@@ -1,0 +1,43 @@
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        matrix = []
+        char_idx = 0
+        # try to print first column
+        l = 0
+        increment = 1
+        zigCount = numRows - 2
+
+        if len(s) <= numRows:
+            return s
+
+        while char_idx < len(s):
+            if len(matrix) < numRows:
+                matrix.append(s[char_idx])
+            else:
+                matrix[l] += s[char_idx]
+               
+            char_idx +=1
+
+            if l == numRows - 1:
+                # now we will add numRows - 2 columns
+                # to do the zigzag
+                j = 0
+                while j < zigCount and char_idx < len(s):
+                    for lineIdx in range(numRows):
+                        if lineIdx == numRows - 2 - j:
+                            matrix[lineIdx] += s[char_idx]
+                            char_idx +=1
+                        else:    
+                            matrix[lineIdx] += ""
+                    j+= 1
+                l = 0
+            else:
+                l += increment
+                    
+
+
+        return "".join(matrix)    
+
+        
+
+        
