@@ -1,0 +1,11 @@
+class Solution:
+    def reverse(self, x: int) -> int:
+        val = str(x)
+
+        if val[0] in ("+", "-"):
+            sign = val[0]
+            val = sign + val[:0:-1]
+        else:
+            val = val[::-1]
+        return int(val) if int(val).bit_length() < 32 else 0
+        
